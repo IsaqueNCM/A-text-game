@@ -14,11 +14,11 @@
  */
 public class  Room
 {
-    public String description;
-    public Room northExit;
-    public Room southExit;
-    public Room eastExit;
-    public Room westExit;
+    private String description;
+    private Room northExit;
+    private Room southExit;
+    private Room eastExit;
+    private Room westExit;
 
     /**
      * Create a room described "description". Initially, it has
@@ -26,7 +26,7 @@ public class  Room
      * "an open court yard".
      * @param description The room's description.
      */
-    public Room(String description) 
+    public Room(String description)
     {
         this.description = description;
     }
@@ -35,7 +35,7 @@ public class  Room
      * Define the exits of this room.  Every direction either leads
      * to another room or is null (no exit there).
      * @param north The north exit.
-     * @param east The east east.
+     * @param east The east exit.
      * @param south The south exit.
      * @param west The west exit.
      */
@@ -55,6 +55,7 @@ public class  Room
         }
     }
 
+
     /**
      * @return The description of the room.
      */
@@ -62,5 +63,27 @@ public class  Room
     {
         return description;
     }
+    public Room getNorthExit() {return northExit; }
+    public Room getSouthExit() {return southExit; }
+    public Room getEastExit() {return eastExit; }
+    public Room getWestExit() {return westExit; }
 
+     public void getExitString() {
+         System.out.println(description);
+         System.out.println("Voce está " + description);
+         System.out.print("Exits: ");
+         if(northExit != null) {
+             System.out.print("north ");
+         }
+         if(eastExit != null) {
+             System.out.print("east ");
+         }
+         if(southExit!= null) {
+             System.out.print("south ");
+         }
+         if(westExit != null) {
+             System.out.print("west ");
+         }
+         System.out.println();
+     }
 }
