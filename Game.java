@@ -219,7 +219,11 @@ public class Game
             return true;  // signal that we want to quit
         }
     }
+    private void classeeTest(){
+        System.out.println("teste git");
+    }
     private void printInf() {
         printLocationInfo();
     }
+
 }
