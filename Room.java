@@ -63,12 +63,15 @@ public class  Room
     }
 
 
-     public void getExit() {
-         if (exits != null) {
-             System.out.println(exits);
-         }
-        else{
-             System.out.println("Não há saida");
-         }
-     }
+    public void getExit() {
+        if (exits != null && !exits.isEmpty()) {
+            System.out.print("Saídas disponíveis: ");
+            for (String direction : exits.keySet()) {
+                System.out.print(direction + " ");
+            }
+            System.out.println(); // Pula uma linha no final da lista de saídas
+        } else {
+            System.out.println("Não há saídas disponíveis.");
+        }
+    }
 }
