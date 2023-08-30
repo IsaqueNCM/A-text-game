@@ -88,14 +88,10 @@ public class Game
      * Print out the opening message for the player.
      */
     private void printLocationInfo(){
-        currentRoom.getDescription();
-        System.out.println("Voce está " + currentRoom.getDescription());
+        currentRoom.getLongDescription();
         System.out.print("Exits: ");
         currentRoom.getExit();
-
-
         System.out.println();
-
     }
     private void printWelcome()
     {
@@ -159,30 +155,26 @@ public class Game
      */
     private void goRoom(Command command)
     {
-        if(!command.hasSecondWord()) {
-            // if there is no second word, we don't know where to go...
+        if (!command.hasSecondWord()) {
             System.out.println("Go where?");
             return;
         }
 
         String direction = command.getSecondWord();
 
-        // Try to leave current room.
-        Room nextRoom = null;
-        currentRoom.getExit();
+
+        // Try to leave the current room and move to the next room.
+        Room nextRoom = currentRoom.getExit(direction);
 
         if (nextRoom == null) {
             System.out.println("There is no door!");
-        }
-        else {
+        } else {
             currentRoom = nextRoom;
-            System.out.println("You are " + currentRoom.getDescription());
-            System.out.print("Exits: ");
-            currentRoom.getExit();
-            System.out.println();
+
+            printLocationInfo(); // Print information about the new room
+
         }
     }
-
     /**
      * "Quit" was entered. Check the rest of the command to see
      * whether we really quit the game.
@@ -201,5 +193,5 @@ public class Game
     private void printInf() {
         printLocationInfo();
     }
-
 }
+
