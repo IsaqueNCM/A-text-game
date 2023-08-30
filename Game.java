@@ -162,6 +162,7 @@ public class Game
 
         String direction = command.getSecondWord();
 
+
         // Try to leave the current room and move to the next room.
         Room nextRoom = currentRoom.getExit(direction);
 
@@ -169,7 +170,9 @@ public class Game
             System.out.println("There is no door!");
         } else {
             currentRoom = nextRoom;
+
             printLocationInfo(); // Print information about the new room
+
         }
     }
     /**
@@ -190,5 +193,5 @@ public class Game
     private void printInf() {
         printLocationInfo();
     }
-
 }
+
