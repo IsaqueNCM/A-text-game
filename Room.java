@@ -38,7 +38,7 @@ public class  Room {
 
     }
 
-    public void getItens() {
+    public void additem() {
         if (itens != null && !itens.isEmpty()) {
             System.out.print("Itens disponíveis: | ");
             for (String direction : itens.keySet()) {

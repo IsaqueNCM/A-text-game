@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *  This class is the main class of the "World of Zuul" application. 
  *  "World of Zuul" is a very simple, text based adventure game.  Users 
@@ -19,6 +22,7 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
+    private List<Room> roomHistory;
 
     /**
      * Create the game and initialise its internal map.
@@ -27,6 +31,7 @@ public class Game
     {
         createRooms();
         parser = new Parser();
+        roomHistory = new ArrayList<>();
     }
 
 
@@ -112,7 +117,6 @@ public class Game
      */
     private void printLocationInfo(){
         currentRoom.getLongDescription();
-        currentRoom.getItens();
         System.out.print("Exits: ");
         currentRoom.getExit();
         System.out.println();
@@ -153,11 +157,15 @@ public class Game
             printInf();
         }else if (commandWord.equals("look")){
             currentRoom.getLongDescription();
+            currentRoom.additem();
         }else if (commandWord.equals("eat")) {
             printEat();
         }else if (commandWord.equals("drink")){
             System.out.println("Você não está com sede!!");
+        } else if (commandWord.equals("back")){
+            goBack();
         }
+
         return wantToQuit;
     }
 
@@ -188,19 +196,28 @@ public class Game
 
         String direction = command.getSecondWord();
 
-
         // Try to leave the current room and move to the next room.
         Room nextRoom = currentRoom.getExit(direction);
 
         if (nextRoom == null) {
             System.out.println("There is no door!");
         } else {
+            roomHistory.add(currentRoom); // adiciona a sala atual de registro
             currentRoom = nextRoom;
-
             printLocationInfo(); // Print information about the new room
 
         }
     }
+    private void goBack(){
+        if (!roomHistory.isEmpty()) {
+            int lastIndex = roomHistory.size() -1;
+            currentRoom = roomHistory.get(lastIndex); // pega a ultima sala visitada
+            printLocationInfo();
+        }else{
+            System.out.println("Você não tem mais para onde voltar");
+        }
+    }
+
     /**
      * "Quit" was entered. Check the rest of the command to see
      * whether we really quit the game.
