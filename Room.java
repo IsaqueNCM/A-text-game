@@ -25,8 +25,8 @@ public class  Room
      * "an open court yard".
      * @param description The room's description.
      */
-    public Room(String description)
-    {
+    public Room(String description) {
+        itens = new HashMap<>();
         this.description = description;
         exits = new HashMap<>();
     }
@@ -77,4 +77,6 @@ public class  Room
     public Room getExit(String direction) {
         return exits.get(direction);
     }
+
+
 }

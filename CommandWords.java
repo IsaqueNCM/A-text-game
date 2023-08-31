@@ -21,7 +21,22 @@ public class CommandWords
      */
     public CommandWords()
     {
-        // nothing to do at the moment...
+        showAll();
+    }
+    public void showAll()
+    {
+        for(String command : validCommands) {
+            System.out.print(command + " ");
+        }
+        System.out.println();
+    }
+    public String getCommandList() {
+        StringBuilder commandList = new StringBuilder("Seus comandos são: ");
+        for(String command : validCommands) {
+            commandList.append(command).append(" ");
+        }
+        return commandList.toString();
+
     }
 
     /**

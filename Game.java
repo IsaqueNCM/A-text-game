@@ -46,12 +46,25 @@ public class Game
         did5 = new Room(" na didatica 5, ela é bem grande");
         did6 = new Room(" na didatica 6 e me parece o mesmo da didatica 5");
 
+        // create the itens
+        Item page1 = new Item("Página 1",3.0);
+        Item sandubaSaboroso  =  new Item("Um sanduba muito delicioso", 5.0);
+        Item page2 = new Item("Pagina 3", 3.0);
+        Item page3 = new Item("Pagina 3", 3.0);
+        Item page4 = new Item("Pagina 4", 3.0);
+        Item page5 = new Item("Pagina 5", 3.0);
+        Item page6 = new Item("Pagina 6", 3.0);
 
 
 
         // initialise room exits
         did1.setExit("north",did6);
         did1.setExit("east",did2);
+
+        did1.setItem("Página 1",page1 );
+        did1.setItem("Sanduba Saboroso",sandubaSaboroso);
+
+
         did2.setExit("west",did1);
         did2.setExit("east",did3);
         did3.setExit("north",did5);
@@ -89,6 +102,7 @@ public class Game
      */
     private void printLocationInfo(){
         currentRoom.getLongDescription();
+        currentRoom.getItens();
         System.out.print("Exits: ");
         currentRoom.getExit();
         System.out.println();
@@ -140,7 +154,7 @@ public class Game
      * Here we print some stupid, cryptic message and a list of the
      * command words.
      */
-    private void printHelp()
+    private void printHelp( )
     {
         System.out.println("You are lost. You are alone. You wander");
         System.out.println("around at the university.");
@@ -193,5 +207,6 @@ public class Game
     private void printInf() {
         printLocationInfo();
     }
+
 }
 
