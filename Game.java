@@ -67,12 +67,22 @@ public class Game
 
         did2.setExit("west",did1);
         did2.setExit("east",did3);
+
+        did2.setItem("Pagina 2", page2 );
+
         did3.setExit("north",did5);
         did3.setExit("west",did2);
         did3.setExit("east",did4);
+        did3.setItem("Pagina 3", page3);
+
         did4.setExit("west",did3);
+        did4.setItem("Pagina 4", page4);
+
         did5.setExit("south",did3);
+        did5.setItem("Pagina 5", page5);
+
         did6.setExit("south",did1);
+        did6.setItem("Pagina 6", page6);
 
         currentRoom = did1;  // start game did1
     }
