@@ -14,24 +14,44 @@ import java.util.HashMap;
  * @author  Michael Kölling and David J. Barnes
  * @version 2016.02.29
  */
-public class  Room
-{
+public class  Room {
+    private HashMap<String, Item> itens;
     private String description;
-    private HashMap<String, Room>exits;
+    private HashMap<String, Room> exits;
 
     /**
      * Create a room described "description". Initially, it has
      * no exits. "description" is something like "a kitchen" or
      * "an open court yard".
+     *
      * @param description The room's description.
      */
     public Room(String description) {
         itens = new HashMap<>();
         this.description = description;
+
         exits = new HashMap<>();
     }
 
-    /**
+    public void setItem(String nome, Item item) {
+        itens.put(nome, item );
+
+    }
+
+    public void getItens() {
+        if (itens != null && !itens.isEmpty()) {
+            System.out.print("Itens disponíveis: | ");
+            for (String direction : itens.keySet()) {
+                System.out.print(direction + " | ");
+            }
+            System.out.println(); // Pula uma linha no final da lista de saídas
+        } else {
+            System.out.println("Não há Itens disponíveis.");
+        }
+    }
+
+
+/**
      * Define the exits of this room.  Every direction either leads
      * to another room or is null (no exit there).
      * @param north The north exit.

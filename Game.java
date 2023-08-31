@@ -140,7 +140,6 @@ public class Game
             System.out.println("I don't know what you mean...");
             return false;
         }
-
         String commandWord = command.getCommandWord();
         if (commandWord.equals("help")) {
             printHelp();
@@ -152,8 +151,13 @@ public class Game
             wantToQuit = quit(command);
         }else if (commandWord.equals("info")) {
             printInf();
+        }else if (commandWord.equals("look")){
+            currentRoom.getLongDescription();
+        }else if (commandWord.equals("eat")) {
+            printEat();
+        }else if (commandWord.equals("drink")){
+            System.out.println("Você não está com sede!!");
         }
-
         return wantToQuit;
     }
 
@@ -166,13 +170,11 @@ public class Game
      */
     private void printHelp( )
     {
-        System.out.println("You are lost. You are alone. You wander");
-        System.out.println("around at the university.");
-        System.out.println();
-        System.out.println("Your command words are:");
-        System.out.println("   go quit help");
+        parser.showCommands();
     }
-
+    private void printEat(){
+        System.out.println("Você comeu agora e não está mais com fome");
+    }
     /**
      * Try to go in one direction. If there is an exit, enter
      * the new room, otherwise print an error message.
