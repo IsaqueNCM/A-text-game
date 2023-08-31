@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
+
 
 /**
  *  This class is the main class of the "World of Zuul" application. 
@@ -22,7 +24,7 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
-    private List<Room> roomHistory;
+    private Stack<Room> roomHistory;
 
     /**
      * Create the game and initialise its internal map.
@@ -31,7 +33,7 @@ public class Game
     {
         createRooms();
         parser = new Parser();
-        roomHistory = new ArrayList<>();
+        roomHistory = new Stack<Room>();
     }
 
 
@@ -202,16 +204,15 @@ public class Game
         if (nextRoom == null) {
             System.out.println("There is no door!");
         } else {
-            roomHistory.add(currentRoom); // adiciona a sala atual de registro
+            roomHistory.push(currentRoom); // adiciona a sala atual de registro
             currentRoom = nextRoom;
             printLocationInfo(); // Print information about the new room
 
         }
     }
     private void goBack(){
-        if (!roomHistory.isEmpty()) {
-            int lastIndex = roomHistory.size() -1;
-            currentRoom = roomHistory.get(lastIndex); // pega a ultima sala visitada
+        if (!roomHistory.empty()) {
+            currentRoom = roomHistory.pop(); // pega a ultima sala visitada
             printLocationInfo();
         }else{
             System.out.println("Você não tem mais para onde voltar");
